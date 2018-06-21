@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FcaMonitoringRestfulServicesApplication {
+public class FCAMonitoringRestfulServicesApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FcaMonitoringRestfulServicesApplication.class, args);
+		SpringApplication.run(FCAMonitoringRestfulServicesApplication.class, args);
 	}
 }
