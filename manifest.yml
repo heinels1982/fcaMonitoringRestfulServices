@@ -1,0 +1,4 @@
+---
+services:
+- fca-stats-sql-database1
+- fca-stats-sql-database2

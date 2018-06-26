@@ -1,12 +1,11 @@
 package com.ibm.fca.fcaMonitoringRestfulServices;
 
 import com.ibm.fca.fcaMonitoringRestfulServices.bean.AckType;
-import com.ibm.fca.fcaMonitoringRestfulServices.bean.ITILType;
 import com.ibm.fca.fcaMonitoringRestfulServices.bean.Stats;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,7 +13,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class FCACcontroller {
+public class FCAController {
+
+
+    private final JdbcTemplate jdbc;
+
+    public FCAController(JdbcTemplate jdbc) {
+        this.jdbc = jdbc;
+    }
+
+    @RequestMapping("/")
+    public String hello() {
+        return this.jdbc.queryForObject("select model from car where id = 1",
+                String.class);
+    }
 
     @RequestMapping("/stats")
     public ResponseEntity stats() {
@@ -27,7 +39,7 @@ public class FCACcontroller {
 
         responseHeaders.set("Access-Control-Allow-Origin", "*");
         return new ResponseEntity<List<Stats>>(statsList, responseHeaders, HttpStatus.CREATED);
-
-
     }
+
+
 }
